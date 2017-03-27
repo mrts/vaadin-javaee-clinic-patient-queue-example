@@ -1,4 +1,4 @@
-package com.clinicpatientqueueexample.backend;
+package com.clinicpatientqueueexample.data;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -53,4 +53,5 @@ public class CrudServiceTest {
         service.save(entity);
         Assert.assertEquals("Same bean should not be stored twice", service.findAll().size(), 1);
     }
+
 }

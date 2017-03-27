@@ -2,7 +2,8 @@ package com.clinicpatientqueueexample;
 
 import javax.servlet.annotation.WebServlet;
 
-import com.clinicpatientqueueexample.backend.CrudService;
+import com.clinicpatientqueueexample.data.CrudService;
+import com.clinicpatientqueueexample.patients.Patient;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
@@ -21,10 +22,10 @@ import com.vaadin.ui.VerticalLayout;
 @Theme("clinicpatientqueueexampletheme")
 public class ClinicPatientQueueExampleUI extends UI {
 
-    private CrudService<Person> service = new CrudService<>();
-    private DataProvider<Person, String> dataProvider = new CallbackDataProvider<>(
-                    query -> service.findAll().stream(),
-                    query -> service.findAll().size());
+    private CrudService<Patient> service = new CrudService<>();
+    private DataProvider<Patient, String> dataProvider = new CallbackDataProvider<>(
+            query -> service.findAll().stream(), query -> service.findAll().size());
+    private int number;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -34,17 +35,15 @@ public class ClinicPatientQueueExampleUI extends UI {
 
         final Button button = new Button("Click Me");
         button.addClickListener(e -> {
-            service.save(new Person(name.getValue()));
+            service.save(new Patient(String.valueOf(number++), name.getValue()));
             dataProvider.refreshAll();
         });
 
-        final Grid<Person> grid = new Grid<>();
-        grid.addColumn(Person::getName).setCaption("Name");
+        final Grid<Patient> grid = new Grid<>();
+        grid.addColumn(Patient::getName).setCaption("Name");
         grid.setDataProvider(dataProvider);
         grid.setSizeFull();
 
-        // This is a component from the vaadin-javaee-clinic-patient-queue-example-addon module
-        //layout.addComponent(new MyComponent());
         layout.addComponents(name, button, grid);
         layout.setSizeFull();
         layout.setExpandRatio(grid, 1.0f);

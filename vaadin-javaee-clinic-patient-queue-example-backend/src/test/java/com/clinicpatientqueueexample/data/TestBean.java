@@ -1,17 +1,11 @@
-package com.clinicpatientqueueexample.backend;
+package com.clinicpatientqueueexample.data;
 
-public class TestBean {
+public class TestBean extends Entity {
 
     private static int counter = 0;
 
-    private final int id;
-
     public TestBean() {
-        id = ++counter;
-    }
-
-    public int getId() {
-        return id;
+        id = String.valueOf(++counter);
     }
 
     @Override
