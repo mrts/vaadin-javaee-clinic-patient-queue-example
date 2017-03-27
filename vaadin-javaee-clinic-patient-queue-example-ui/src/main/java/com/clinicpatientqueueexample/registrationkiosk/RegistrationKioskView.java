@@ -1,4 +1,4 @@
-package com.clinicpatientqueueexample;
+package com.clinicpatientqueueexample.registrationkiosk;
 
 import com.clinicpatientqueueexample.data.CrudService;
 import com.clinicpatientqueueexample.patients.Patient;
@@ -12,10 +12,10 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-@CDIView(DefaultView.NAME)
-public class DefaultView extends VerticalLayout implements View {
+@CDIView(RegistrationKioskView.VIEW_NAME)
+public class RegistrationKioskView extends VerticalLayout implements View {
 
-    public static final String NAME = "default";
+    public static final String VIEW_NAME = "registration-kiosk";
 
     private CrudService<Patient> service = new CrudService<>();
     private DataProvider<Patient, String> dataProvider = new CallbackDataProvider<>(
