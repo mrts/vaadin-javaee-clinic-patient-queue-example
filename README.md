@@ -1,6 +1,6 @@
 # vaadin-javaee-clinic-patient-queue-example
 
-An example clinic patient queue example application using Vaadin 8 and Java EE.
+An example clinic patient queue application using Vaadin 8 and Java EE.
 
 Demonstrates how to use Vaadin's server push and Java EE messaging APIs to send
 messages to client browsers in real time. Uses JMS 2.0 API for sending
@@ -37,9 +37,9 @@ server.
 ## Testing
 
 1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/doctors-office) in first browser window
-2. Login as *drteppo* with password *gaSt62reXaZa* 
+2. Login as *drtaivo* with password *gaSt62reXaZa* 
 3. Open [registration kiosk](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/registration-kiosk) in second browser window
-4. Enter your name and press *Register* under dr. Teppo Haapakoski's name to register to his appointment
+4. Enter your name and press *Register* under dr. Taivo Lõoke's name to register to his appointment
 5. The kiosk will output your call-in number
 6. Open [infoscreen](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/infoscreen) in third browser window
 7. Switch to doctor's office app and observe that your registration is visible on the page
@@ -61,7 +61,7 @@ within the `bin` folder of your WildFly installation and enter the requested
 information. Choose *b) Application user* and add the user to the group
 *users*.
 
-Add user *drteppo* with password *gaSt62reXaZa* for the test to work.
+Add user *drtaivo* with password *gaSt62reXaZa* for the test to work.
 
 ## References
 

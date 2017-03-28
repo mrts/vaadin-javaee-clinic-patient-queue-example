@@ -11,6 +11,9 @@ public class Patient extends Entity {
         setName(name);
     }
 
+    public Patient() {
+    }
+
     public String getName() {
         return name;
     }

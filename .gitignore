@@ -1,4 +1,5 @@
 .idea/
+.designer/
 target/
 *.swp
 *.iml

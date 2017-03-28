@@ -3,15 +3,19 @@ package com.clinicpatientqueueexample.patients;
 import com.clinicpatientqueueexample.data.Entity;
 import com.clinicpatientqueueexample.doctors.Doctor;
 
+import java.util.UUID;
+
 public class Registration extends Entity {
 
-    private Doctor doctor;
-    private Patient patient;
+    private final Doctor doctor;
+    private final Patient patient;
+
     private RegistrationStatus status = RegistrationStatus.WAITING;
 
-    public Registration(Doctor doctor, Patient patient) {
-        this.doctor = doctor;
+    public Registration(UUID uuid, Patient patient, Doctor doctor) {
+        this.id = uuid.toString();
         this.patient = patient;
+        this.doctor = doctor;
     }
 
     public RegistrationStatus getStatus() {
@@ -26,15 +30,7 @@ public class Registration extends Entity {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
     public Patient getPatient() {
         return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
     }
 }

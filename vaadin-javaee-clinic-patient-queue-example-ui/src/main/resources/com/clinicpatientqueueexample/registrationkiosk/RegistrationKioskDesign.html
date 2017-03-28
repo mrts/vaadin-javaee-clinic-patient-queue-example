@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;clinicpatientqueueexampletheme&quot;}">
+  <meta name="vaadin-version" content="8.0.2">
+ </head>
+ <body>
+  <vaadin-vertical-layout size-full>
+   <vaadin-label plain-text>
+     Registration kiosk
+   </vaadin-label>
+   <vaadin-horizontal-layout>
+    <vaadin-label plain-text>
+      Your name:
+    </vaadin-label>
+    <vaadin-text-field _id="patientName"></vaadin-text-field>
+   </vaadin-horizontal-layout>
+   <vaadin-grid-layout size-full _id="doctorGridLayout" :expand>
+    <row>
+     <column></column>
+     <column></column>
+    </row>
+    <row>
+     <column></column>
+     <column></column>
+    </row>
+   </vaadin-grid-layout>
+  </vaadin-vertical-layout>
+ </body>
+</html>

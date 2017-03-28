@@ -4,22 +4,21 @@ import com.clinicpatientqueueexample.data.Entity;
 
 public class Doctor extends Entity {
 
-    private String name;
-    private String office;
+    private final String name;
+    private final String office;
+
+    public Doctor(String id, String name, String office) {
+        this.id = id;
+        this.name = name;
+        this.office = office;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getOffice() {
         return office;
     }
 
-    public void setOffice(String office) {
-        this.office = office;
-    }
 }

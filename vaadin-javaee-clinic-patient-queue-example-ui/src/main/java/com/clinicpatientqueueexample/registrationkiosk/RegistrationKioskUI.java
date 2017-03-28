@@ -10,7 +10,7 @@ public class RegistrationKioskUI extends ClinicPatientQueueExampleUIBase {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupNavigator();
-        navigator.navigateTo(RegistrationKioskView.VIEW_NAME);
+        navigator.navigateTo(RegistrationKioskViewImpl.VIEW_NAME);
     }
 
 }
