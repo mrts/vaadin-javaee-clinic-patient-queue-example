@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;clinicpatientqueueexampletheme&quot;}">
+  <meta name="vaadin-version" content="8.0.2">
+ </head>
+ <body>
+  <vaadin-vertical-layout size-full>
+   <vaadin-horizontal-layout width-full>
+    <vaadin-label plain-text>
+      Doctor's office
+    </vaadin-label>
+    <vaadin-button plain-text _id="logoutButton" :right>
+      Logout
+    </vaadin-button>
+   </vaadin-horizontal-layout>
+   <vaadin-label plain-text _id="doctorNameLabel">
+     dr. Tanja Aho
+   </vaadin-label>
+   <vaadin-horizontal-layout>
+    <vaadin-label plain-text>
+      Actions:
+    </vaadin-label>
+    <vaadin-button plain-text _id="callInButton">
+      Call in
+    </vaadin-button>
+   </vaadin-horizontal-layout>
+   <vaadin-label plain-text>
+     Patient queue
+   </vaadin-label>
+   <vaadin-grid size-full data-item-type="com.clinicpatientqueueexample.patients.Registration" _id="registeredPatientsGrid" :expand></vaadin-grid>
+  </vaadin-vertical-layout>
+ </body>
+</html>

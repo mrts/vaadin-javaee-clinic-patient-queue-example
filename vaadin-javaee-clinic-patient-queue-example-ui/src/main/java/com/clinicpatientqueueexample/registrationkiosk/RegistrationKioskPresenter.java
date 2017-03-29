@@ -6,6 +6,8 @@ import com.clinicpatientqueueexample.doctors.DoctorService;
 import com.clinicpatientqueueexample.patients.Patient;
 import com.clinicpatientqueueexample.patients.PatientService;
 import com.clinicpatientqueueexample.patients.RegistrationService;
+import com.vaadin.external.org.slf4j.Logger;
+import com.vaadin.external.org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -40,7 +42,8 @@ public class RegistrationKioskPresenter {
         final Patient patient = patientService.save(view.getPatient());
         registrationService.registerPatientToDoctor(patient, doctor);
         notification.showMessage(patient.getName() + ", you are successfully registered to "
-                + doctor.getName() + " appointment. Your call-in number is " + patient.getId());
+                + doctor.getName() + " appointment.\nYour call-in number is " + patient.getId());
+        view.resetPatient();
     }
 
 }

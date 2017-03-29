@@ -39,7 +39,7 @@ public class RegistrationKioskPresenterTest {
     private RegistrationKioskPresenter presenter;
 
     @Test
-    public void registerToDoctor_shouldRegisterToGivenDoctorWithPatientFromView() {
+    public void registerToDoctor_shouldRegisterPatientToGivenDoctorAndShowNotification() {
         // arrange
         final Patient patient = new Patient("123", "Mr. Pablo Patient");
         final Doctor doctor = new Doctor("234", "Dr. Dora Doctor", "office-1");
@@ -52,7 +52,7 @@ public class RegistrationKioskPresenterTest {
         // assert
         verify(registrationService).registerPatientToDoctor(patient, doctor);
         verify(notification).showMessage("Mr. Pablo Patient, you are successfully registered to "
-                + "Dr. Dora Doctor appointment. Your call-in number is 123");
+                + "Dr. Dora Doctor appointment.\nYour call-in number is 123");
     }
 
 }

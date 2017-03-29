@@ -8,4 +8,6 @@ public interface RegistrationKioskView {
 
     Patient getPatient();
 
+    void resetPatient();
+
 }

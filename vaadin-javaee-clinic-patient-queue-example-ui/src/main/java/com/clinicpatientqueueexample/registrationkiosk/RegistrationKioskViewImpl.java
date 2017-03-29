@@ -16,7 +16,8 @@ import java.util.List;
 public class RegistrationKioskViewImpl extends RegistrationKioskDesign
         implements RegistrationKioskView, View {
 
-    private Patient patient = new Patient();
+    private Binder<Patient> binder = new Binder<>();
+    private Patient patient;
 
     private List<DoctorComponentImpl> doctorComponents = new ArrayList<>();
 
@@ -26,9 +27,9 @@ public class RegistrationKioskViewImpl extends RegistrationKioskDesign
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
         presenter.setView(this);
-        patientName.focus();
         bindPatientNameField();
-        fillDoctorGrid(presenter.getAllDoctors());
+        fillDoctorsGridLayout(presenter.getAllDoctors());
+        resetPatient();
     }
 
     @Override
@@ -36,9 +37,18 @@ public class RegistrationKioskViewImpl extends RegistrationKioskDesign
         return patient;
     }
 
-    private void bindPatientNameField() {
-        final Binder<Patient> binder = new Binder<>();
+    @Override
+    public void resetPatient() {
+        patient = new Patient();
         binder.setBean(patient);
+        for (final DoctorComponentImpl doctorComponent : doctorComponents) {
+            doctorComponent.registerButton.setEnabled(false);
+        }
+        patientName.setValue("");
+        patientName.focus();
+    }
+
+    private void bindPatientNameField() {
         binder.forField(patientName).withValidator(new StringLengthValidator("Too short", 3, 200))
                 .bind(Patient::getName, (p, name) -> {
                     p.setName(name);
@@ -46,10 +56,9 @@ public class RegistrationKioskViewImpl extends RegistrationKioskDesign
                 });
     }
 
-    private void fillDoctorGrid(List<Doctor> allDoctors) {
-        allDoctors.stream().map(doctor -> new DoctorComponentImpl(doctor, presenter))
+    private void fillDoctorsGridLayout(List<Doctor> allDoctors) {
+        allDoctors.stream().map(doctor -> new DoctorComponentImpl(doctor, this, presenter))
                 .forEach(doctorComponent -> {
-                    doctorComponent.registerButton.setEnabled(false);
                     doctorComponents.add(doctorComponent);
                     doctorGridLayout.addComponent(doctorComponent);
                 });

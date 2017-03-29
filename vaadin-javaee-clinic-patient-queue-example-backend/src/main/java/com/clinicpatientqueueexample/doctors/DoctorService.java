@@ -6,4 +6,6 @@ public interface DoctorService {
 
     List<Doctor> findAll();
 
+    Doctor findOne(String username);
+
 }

@@ -14,13 +14,13 @@ public class DoctorsOfficeUI extends ClinicPatientQueueExampleUIBase {
 
         String defaultView = Page.getCurrent().getUriFragment();
         if (defaultView == null || defaultView.trim().isEmpty()) {
-            defaultView = DoctorsOfficeView.VIEW_NAME;
+            defaultView = DoctorsOfficeViewImpl.VIEW_NAME;
         }
 
         if (isUserAuthenticated(vaadinRequest)) {
             navigator.navigateTo(defaultView);
         } else {
-            navigator.navigateTo(LoginView.VIEW_NAME + "/" + defaultView);
+            navigator.navigateTo(LoginView.VIEW_NAME);
         }
     }
 
