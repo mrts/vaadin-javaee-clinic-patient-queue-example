@@ -37,9 +37,9 @@ server.
 ## Testing
 
 1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/doctors-office) in first browser window
-2. Login as *drtaivo* with password *gaSt62reXaZa* 
+2. Login as *user* with password *user*, dr. Anu Võsu's office view opens
 3. Open [registration kiosk](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/registration-kiosk) in second browser window
-4. Enter your name and press *Register* under dr. Taivo Lõoke's name to register to his appointment
+4. Enter your name and press *Register* under dr. Anu Võsu's name to register to her appointment
 5. The kiosk will output your call-in number
 6. Open [infoscreen](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/infoscreen) in third browser window
 7. Switch to doctor's office app and observe that your registration is visible on the page
@@ -61,7 +61,7 @@ within the `bin` folder of your WildFly installation and enter the requested
 information. Choose *b) Application user* and add the user to the group
 *users*.
 
-Add user *drtaivo* with password *gaSt62reXaZa* for the test to work.
+Add user *user* with password *user* for the test to work.
 
 ## References
 

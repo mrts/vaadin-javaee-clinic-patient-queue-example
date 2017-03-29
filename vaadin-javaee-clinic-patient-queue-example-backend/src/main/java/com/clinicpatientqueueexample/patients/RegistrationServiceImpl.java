@@ -32,4 +32,10 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .filter(registration -> registration.getPatient().getId() == patient.getId()).findFirst();
     }
 
+    @Override
+    public List<Registration> findByStatus(RegistrationStatus status) {
+        return service.findAll().stream().filter(registration -> registration.getStatus() == status)
+                .collect(Collectors.toList());
+    }
+
 }

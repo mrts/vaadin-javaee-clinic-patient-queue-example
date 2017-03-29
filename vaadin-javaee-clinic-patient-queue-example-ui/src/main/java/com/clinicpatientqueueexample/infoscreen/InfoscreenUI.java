@@ -10,7 +10,7 @@ public class InfoscreenUI extends ClinicPatientQueueExampleUIBase {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupNavigator();
-        navigator.navigateTo(InfoscreenView.VIEW_NAME);
+        navigator.navigateTo(InfoscreenViewImpl.VIEW_NAME);
     }
 
 }

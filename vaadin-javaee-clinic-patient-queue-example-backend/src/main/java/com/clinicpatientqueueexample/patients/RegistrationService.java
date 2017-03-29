@@ -13,4 +13,6 @@ public interface RegistrationService {
 
     Optional<Registration> findByPatient(Patient patient);
 
+    List<Registration> findByStatus(RegistrationStatus status);
+
 }

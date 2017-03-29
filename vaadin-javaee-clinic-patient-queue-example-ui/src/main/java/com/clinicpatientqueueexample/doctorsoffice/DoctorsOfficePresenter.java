@@ -51,4 +51,8 @@ public class DoctorsOfficePresenter {
         return sessionContext.getDoctor().getName();
     }
 
+    public String getDoctorOffice() {
+        return sessionContext.getDoctor().getOffice();
+    }
+
 }

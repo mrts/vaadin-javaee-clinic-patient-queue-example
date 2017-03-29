@@ -33,6 +33,7 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
         doctorNameLabel.setValue(presenter.getDoctorName());
+        doctorsOfficeNameLabel.setValue("Doctor's office #" + presenter.getDoctorOffice());
 
         logoutButton.addClickListener(e -> presenter.logout());
 
