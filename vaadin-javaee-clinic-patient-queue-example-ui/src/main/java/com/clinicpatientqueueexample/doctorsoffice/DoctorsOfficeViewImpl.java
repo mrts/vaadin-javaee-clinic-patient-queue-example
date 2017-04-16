@@ -1,6 +1,7 @@
 package com.clinicpatientqueueexample.doctorsoffice;
 
 import com.clinicpatientqueueexample.common.Constants;
+import com.clinicpatientqueueexample.messaging.RegistrationBroadcaster;
 import com.clinicpatientqueueexample.patients.Registration;
 import com.vaadin.cdi.CDIView;
 import com.vaadin.data.provider.CallbackDataProvider;
@@ -14,14 +15,18 @@ import com.vaadin.navigator.ViewChangeListener;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @CDIView(DoctorsOfficeViewImpl.VIEW_NAME)
 @RolesAllowed(Constants.USERS_ROLE)
-public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View {
+public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, Consumer<String> {
 
     public static final String VIEW_NAME = "doctors-office";
 
     private static final Logger logger = LoggerFactory.getLogger(DoctorsOfficeViewImpl.class);
+
+    @Inject
+    private RegistrationBroadcaster broadcaster;
 
     @Inject
     private DoctorsOfficePresenter presenter;
@@ -43,8 +48,7 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View {
         }));
         callInButton.setEnabled(false);
 
-        registrationDataProvider = DataProvider.ofCollection(presenter.getDoctorsRegistrations());
-        registeredPatientsGrid.setDataProvider(registrationDataProvider);
+        resetDataProvider();
 
         registeredPatientsGrid.addColumn(registration -> registration.getPatient().getName())
                 .setCaption("Patient");
@@ -55,6 +59,24 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View {
             selectedRegistration = patientSelectionEvent.getFirstSelectedItem();
             callInButton.setEnabled(true);
         });
+
+        broadcaster.register(this);
+    }
+
+    @Override
+    public void detach() {
+        broadcaster.unregister(this);
+        super.detach();
+    }
+
+    @Override
+    public void accept(String message) {
+        getUI().access(() -> resetDataProvider());
+    }
+
+    private void resetDataProvider() {
+        registrationDataProvider = DataProvider.ofCollection(presenter.getDoctorsRegistrations());
+        registeredPatientsGrid.setDataProvider(registrationDataProvider);
     }
 
 }

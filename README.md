@@ -1,17 +1,23 @@
 # vaadin-javaee-clinic-patient-queue-example
 
-An example clinic patient queue application using Vaadin 8 and Java EE.
+An example clinic patient queue application using Vaadin 8, Java EE 7 and
+Vaadin CDI add-on.
 
 Demonstrates how to use Vaadin's server push and Java EE messaging APIs to send
 messages to client browsers in real time. Uses JMS 2.0 API for sending
 messages, message-driven beans for receiving them and a separate singleton
 broadcaster to broadcast messages to Vaadin UIs (the broadcaster is recommended
 by Vaadin as a bridge for connecting message-driven beans and Vaadin UIs that
-have different lifetimes). Vaadin's server push uses a WebSocket connection by
-default.
+have different lifetimes).
 
 Also demonstrates how to authenticate and authorize users using JAAS and Vaadin
 login form and view navigator.
+
+Vaadin's server push uses a WebSocket connection by default which unfortunately
+[is not compatible](https://github.com/vaadin/cdi/issues/88) 
+[with CDI](https://java.net/jira/browse/WEBSOCKET_SPEC-196),
+so for the time being long polling with `@Push(transport = Transport.LONG_POLLING)`
+must be used.
 
 Tested with WildFly 10.1, but should work equally well with other Java EE 7
 application servers.
@@ -20,7 +26,7 @@ The project consists of the following modules:
 
 - parent project: common metadata and configuration
 - `vaadin-javaee-clinic-patient-queue-example-ui`: main Vaadin application module
-- `vaadin-javaee-clinic-patient-queue-example-backend`: backend module, contains server side code and dependencies
+- `vaadin-javaee-clinic-patient-queue-example-backend`: backend module, contains server side code and dependencies.
 
 ## Building and running
 
@@ -37,7 +43,7 @@ server.
 ## Testing
 
 1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/doctors-office) in first browser window
-2. Login as *user* with password *user*, dr. Anu Võsu's office view opens
+2. Login as *user* with password *user* (see *Adding doctors* below), dr. Anu Võsu's office view opens
 3. Open [registration kiosk](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/registration-kiosk) in second browser window
 4. Enter your name and press *Register* under dr. Anu Võsu's name to register to her appointment
 5. The kiosk will output your call-in number
