@@ -2,6 +2,7 @@ package com.clinicpatientqueueexample.doctorsoffice;
 
 import com.clinicpatientqueueexample.common.ViewNotification;
 import com.clinicpatientqueueexample.doctors.Doctor;
+import com.clinicpatientqueueexample.messaging.MessageSenderBean;
 import com.clinicpatientqueueexample.patients.Patient;
 import com.clinicpatientqueueexample.patients.Registration;
 import com.clinicpatientqueueexample.patients.RegistrationService;
@@ -36,6 +37,9 @@ public class DoctorsOfficePresenterTest {
     @Mock
     private UserSessionContext sessionContext;
 
+    @Mock
+    private MessageSenderBean messageSenderBean;
+
     @InjectMocks
     private DoctorsOfficePresenter presenter;
 
@@ -52,7 +56,7 @@ public class DoctorsOfficePresenterTest {
     }
 
     @Test
-    public void callInPatient_shouldSetStatusToRegisteredAndShowNotification() {
+    public void callInPatient_shouldSetStatusToRegisteredAndSendMessageAndShowNotification() {
         // arrange
         final Registration registration = new Registration(UUID.randomUUID(), PATIENT, DOCTOR);
 
@@ -61,6 +65,7 @@ public class DoctorsOfficePresenterTest {
 
         // assert
         assertThat(registration.getStatus()).isEqualTo(RegistrationStatus.CALLED_IN);
+        verify(messageSenderBean).sendCallInMessage("Calling in patient #123");
         verify(notification).showMessage("Calling in patient Ms. Piret Patient");
     }
 

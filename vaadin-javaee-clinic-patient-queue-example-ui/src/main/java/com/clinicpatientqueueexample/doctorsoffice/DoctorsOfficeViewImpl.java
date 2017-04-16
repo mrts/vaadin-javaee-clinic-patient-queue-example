@@ -1,10 +1,10 @@
 package com.clinicpatientqueueexample.doctorsoffice;
 
 import com.clinicpatientqueueexample.common.Constants;
+import com.clinicpatientqueueexample.messaging.AbstractBroadcaster;
 import com.clinicpatientqueueexample.messaging.RegistrationBroadcaster;
 import com.clinicpatientqueueexample.patients.Registration;
 import com.vaadin.cdi.CDIView;
-import com.vaadin.data.provider.CallbackDataProvider;
 import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.external.org.slf4j.Logger;
@@ -48,8 +48,6 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, 
         }));
         callInButton.setEnabled(false);
 
-        resetDataProvider();
-
         registeredPatientsGrid.addColumn(registration -> registration.getPatient().getName())
                 .setCaption("Patient");
         registeredPatientsGrid.addColumn(registration -> registration.getPatient().getId())
@@ -59,6 +57,8 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, 
             selectedRegistration = patientSelectionEvent.getFirstSelectedItem();
             callInButton.setEnabled(true);
         });
+
+        resetDataProvider();
 
         broadcaster.register(this);
     }
@@ -72,6 +72,7 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, 
     @Override
     public void accept(String message) {
         getUI().access(() -> resetDataProvider());
+        logger.info("Received message: " + message);
     }
 
     private void resetDataProvider() {

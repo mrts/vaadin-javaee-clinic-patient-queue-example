@@ -4,16 +4,22 @@ import com.clinicpatientqueueexample.common.PrincipalService;
 import com.clinicpatientqueueexample.common.ViewNavigator;
 import com.clinicpatientqueueexample.common.ViewNotification;
 import com.clinicpatientqueueexample.doctors.DoctorService;
+import com.clinicpatientqueueexample.messaging.MessageSenderBean;
+import com.clinicpatientqueueexample.patients.Patient;
 import com.clinicpatientqueueexample.patients.Registration;
 import com.clinicpatientqueueexample.patients.RegistrationService;
 import com.clinicpatientqueueexample.patients.RegistrationStatus;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import java.util.List;
 
 @Dependent
 public class DoctorsOfficePresenter {
+
+    @EJB
+    private MessageSenderBean messageSenderBean;
 
     @Inject
     private PrincipalService principalService;
@@ -44,7 +50,9 @@ public class DoctorsOfficePresenter {
 
     public void callInPatient(Registration registration) {
         registration.setStatus(RegistrationStatus.CALLED_IN);
-        notification.showMessage("Calling in patient " + registration.getPatient().getName());
+        final Patient patient = registration.getPatient();
+        messageSenderBean.sendCallInMessage("Calling in patient #" + patient.getId());
+        notification.showMessage("Calling in patient " + patient.getName());
     }
 
     public String getDoctorName() {

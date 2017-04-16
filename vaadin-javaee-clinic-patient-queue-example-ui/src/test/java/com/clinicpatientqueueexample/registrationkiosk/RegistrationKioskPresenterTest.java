@@ -3,6 +3,7 @@ package com.clinicpatientqueueexample.registrationkiosk;
 import com.clinicpatientqueueexample.common.ViewNotification;
 import com.clinicpatientqueueexample.doctors.Doctor;
 import com.clinicpatientqueueexample.doctors.DoctorService;
+import com.clinicpatientqueueexample.messaging.MessageSenderBean;
 import com.clinicpatientqueueexample.patients.Patient;
 import com.clinicpatientqueueexample.patients.PatientService;
 import com.clinicpatientqueueexample.patients.RegistrationService;
@@ -34,6 +35,9 @@ public class RegistrationKioskPresenterTest {
 
     @Mock
     private ViewNotification notification;
+
+    @Mock
+    private MessageSenderBean messageSenderBean;
 
     @InjectMocks
     private RegistrationKioskPresenter presenter;

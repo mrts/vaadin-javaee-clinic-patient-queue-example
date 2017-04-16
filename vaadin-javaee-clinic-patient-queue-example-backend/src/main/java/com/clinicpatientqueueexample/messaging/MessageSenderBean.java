@@ -15,7 +15,10 @@ import javax.jms.Queue;
  @JMSDestinationDefinitions(value = {
      @JMSDestinationDefinition(name = "java:/" + MessageSenderBean.REGISTRATION_JMS_DESTINATION,
          interfaceName = "javax.jms.Queue",
-         destinationName = MessageSenderBean.REGISTRATION_QUEUE_NAME)
+         destinationName = MessageSenderBean.REGISTRATION_QUEUE_NAME),
+     @JMSDestinationDefinition(name = "java:/" + MessageSenderBean.CALL_IN_JMS_DESTINATION,
+         interfaceName = "javax.jms.Queue",
+         destinationName = MessageSenderBean.CALL_IN_QUEUE_NAME)
  })
  // @formatter:on
 
@@ -25,14 +28,28 @@ public class MessageSenderBean {
     public static final String REGISTRATION_QUEUE_NAME = "RegistrationMessageQueue";
     public static final String REGISTRATION_JMS_DESTINATION = "queue/" + REGISTRATION_QUEUE_NAME;
 
+    public static final String CALL_IN_QUEUE_NAME = "CallInMessageQueue";
+    public static final String CALL_IN_JMS_DESTINATION = "queue/" + CALL_IN_QUEUE_NAME;
+
     @Inject
     private JMSContext jmsContext;
 
     @Resource(lookup = "java:/" + REGISTRATION_JMS_DESTINATION)
     private Queue registrationQueue;
 
+    @Resource(lookup = "java:/" + CALL_IN_JMS_DESTINATION)
+    private Queue callInQueue;
+
     public void sendRegistrationMessage(String message) {
-        jmsContext.createProducer().send(registrationQueue, message);
+        sendMessage(registrationQueue, message);
+    }
+
+    public void sendCallInMessage(String message) {
+        sendMessage(callInQueue, message);
+    }
+
+    private void sendMessage(Queue queue, String message) {
+        jmsContext.createProducer().send(queue, message);
     }
 
 }

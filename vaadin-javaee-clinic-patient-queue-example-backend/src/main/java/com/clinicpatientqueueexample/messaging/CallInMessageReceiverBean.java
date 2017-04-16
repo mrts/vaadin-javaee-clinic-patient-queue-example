@@ -6,20 +6,20 @@ import javax.inject.Inject;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
-import static com.clinicpatientqueueexample.messaging.MessageSenderBean.REGISTRATION_JMS_DESTINATION;
+import static com.clinicpatientqueueexample.messaging.MessageSenderBean.CALL_IN_JMS_DESTINATION;
 
 @MessageDriven(activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = REGISTRATION_JMS_DESTINATION),
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = CALL_IN_JMS_DESTINATION),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge") })
-public class RegistrationMessageReceiverBean extends AbstractMessageReceiverBean implements MessageListener {
+public class CallInMessageReceiverBean extends AbstractMessageReceiverBean implements MessageListener {
 
     @Inject
-    private RegistrationBroadcaster registrationBroadcaster;
+    private CallInBroadcaster callInBroadcaster;
 
     @Override
     public void onMessage(Message receivedMessage) {
-        broadcastReceivedMessage(registrationBroadcaster, receivedMessage);
+        broadcastReceivedMessage(callInBroadcaster, receivedMessage);
     }
 
 }
