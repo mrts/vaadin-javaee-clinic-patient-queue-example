@@ -1,6 +1,7 @@
 .idea/
 .designer/
 target/
+error-screenshots/
 *.swp
 *.iml
 styles.css
