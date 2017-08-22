@@ -15,7 +15,7 @@ login form and view navigator.
 
 Vaadin's server push uses a WebSocket connection by default which unfortunately
 [is not compatible](https://github.com/vaadin/cdi/issues/88) 
-[with CDI](https://java.net/jira/browse/WEBSOCKET_SPEC-196),
+[with CDI](https://github.com/javaee/websocket-spec/issues/196),
 so for the time being long polling with `@Push(transport = Transport.LONG_POLLING)`
 must be used.
 
