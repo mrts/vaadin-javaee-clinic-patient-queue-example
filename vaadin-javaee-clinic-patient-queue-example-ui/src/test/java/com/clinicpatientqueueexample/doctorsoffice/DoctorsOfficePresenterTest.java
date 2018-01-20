@@ -58,6 +58,7 @@ public class DoctorsOfficePresenterTest {
     @Test
     public void callInPatient_shouldSetStatusToRegisteredAndSendMessageAndShowNotification() {
         // arrange
+        when(sessionContext.getDoctor()).thenReturn(DOCTOR);
         final Registration registration = new Registration(UUID.randomUUID(), PATIENT, DOCTOR);
 
         // act
@@ -65,7 +66,7 @@ public class DoctorsOfficePresenterTest {
 
         // assert
         assertThat(registration.getStatus()).isEqualTo(RegistrationStatus.CALLED_IN);
-        verify(messageSenderBean).sendCallInMessage("Calling in patient #123");
+        verify(messageSenderBean).sendCallInMessage(DOCTOR.getId() + ":Calling in patient #123");
         verify(notification).showMessage("Calling in patient Ms. Piret Patient");
     }
 

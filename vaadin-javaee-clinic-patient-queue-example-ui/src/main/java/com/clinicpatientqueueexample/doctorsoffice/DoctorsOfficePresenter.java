@@ -3,7 +3,6 @@ package com.clinicpatientqueueexample.doctorsoffice;
 import com.clinicpatientqueueexample.common.PrincipalService;
 import com.clinicpatientqueueexample.common.ViewNavigator;
 import com.clinicpatientqueueexample.common.ViewNotification;
-import com.clinicpatientqueueexample.doctors.DoctorService;
 import com.clinicpatientqueueexample.messaging.MessageSenderBean;
 import com.clinicpatientqueueexample.patients.Patient;
 import com.clinicpatientqueueexample.patients.Registration;
@@ -23,9 +22,6 @@ public class DoctorsOfficePresenter {
 
     @Inject
     private PrincipalService principalService;
-
-    @Inject
-    private DoctorService doctorService;
 
     @Inject
     private RegistrationService registrationService;
@@ -51,7 +47,7 @@ public class DoctorsOfficePresenter {
     public void callInPatient(Registration registration) {
         registration.setStatus(RegistrationStatus.CALLED_IN);
         final Patient patient = registration.getPatient();
-        messageSenderBean.sendCallInMessage("Calling in patient #" + patient.getId());
+        messageSenderBean.sendCallInMessage(getDoctorID() + ":Calling in patient #" + patient.getId());
         notification.showMessage("Calling in patient " + patient.getName());
     }
 
@@ -62,5 +58,7 @@ public class DoctorsOfficePresenter {
     public String getDoctorOffice() {
         return sessionContext.getDoctor().getOffice();
     }
+
+    public String getDoctorID() { return sessionContext.getDoctor().getId(); }
 
 }

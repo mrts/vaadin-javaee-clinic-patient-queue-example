@@ -14,11 +14,11 @@ import com.vaadin.navigator.ViewChangeListener;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 @CDIView(DoctorsOfficeViewImpl.VIEW_NAME)
 @RolesAllowed(Constants.USERS_ROLE)
-public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, Consumer<String> {
+public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, BiConsumer<String, String> {
 
     public static final String VIEW_NAME = "doctors-office";
 
@@ -48,9 +48,9 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, 
         callInButton.setEnabled(false);
 
         registeredPatientsGrid.addColumn(registration -> registration.getPatient().getName())
-                .setCaption("Patient");
+            .setCaption("Patient");
         registeredPatientsGrid.addColumn(registration -> registration.getPatient().getId())
-                .setCaption("Number");
+            .setCaption("Number");
         registeredPatientsGrid.addColumn(registration -> registration.getStatus()).setCaption("Status");
         registeredPatientsGrid.addSelectionListener(patientSelectionEvent -> {
             selectedRegistration = patientSelectionEvent.getFirstSelectedItem();
@@ -69,9 +69,13 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, 
     }
 
     @Override
-    public void accept(String message) {
-        getUI().access(() -> resetDataProvider());
-        logger.info("Received message: " + message);
+    public void accept(String receiverID, String message) {
+        getUI().access(() -> {
+            if (receiverID != null && receiverID.equals(presenter.getDoctorID())) {
+                logger.info("Accept message '" + message + "' for doctor #" + receiverID);
+                resetDataProvider();
+            }
+        });
     }
 
     private void resetDataProvider() {

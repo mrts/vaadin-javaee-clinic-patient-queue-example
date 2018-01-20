@@ -3,24 +3,24 @@ package com.clinicpatientqueueexample.messaging;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 public abstract class AbstractBroadcaster {
 
-    private final ConcurrentLinkedQueue<Consumer<String>> listeners = new ConcurrentLinkedQueue<>();
+    private final ConcurrentLinkedQueue<BiConsumer<String, String>> listeners = new ConcurrentLinkedQueue<>();
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    public void register(Consumer<String> listener) {
+    public void register(BiConsumer<String, String> listener) {
         listeners.add(listener);
     }
 
-    public void unregister(Consumer<String> listener) {
+    public void unregister(BiConsumer<String, String> listener) {
         listeners.remove(listener);
     }
 
-    public void broadcast(String messageText) {
-        for (final Consumer<String> listener : listeners) {
-            executorService.execute(() -> listener.accept(messageText));
+    public void broadcast(String receiverID, String messageText) {
+        for (final BiConsumer<String, String> listener : listeners) {
+            executorService.execute(() -> listener.accept(receiverID, messageText));
         }
     }
 
