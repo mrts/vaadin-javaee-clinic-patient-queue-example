@@ -40,6 +40,18 @@ server.
 
     bin/standalone.{bat,sh} -c standalone-full.xml
 
+## Overview
+
+The project consists of three apps:
+
+- Registration kiosk app where patients can register to doctor's appointments
+- Doctor's office app for doctors to see when patients arrive and call them in
+- Infoscreen where patients are notified when doctor calls them in.
+
+The following screencast shows the whole workflow in action:
+
+![screencast](doc/vaadin-javaee-clinic-patient-queue-screencast.gif)
+
 ## Testing
 
 1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT/doctors-office) in first browser window
