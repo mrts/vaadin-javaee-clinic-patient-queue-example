@@ -14,10 +14,11 @@ Also demonstrates how to authenticate and authorize users using JAAS and Vaadin
 login form and view navigator.
 
 Vaadin's server push uses a WebSocket connection by default which unfortunately
-[is not compatible](https://github.com/vaadin/cdi/issues/88) 
-[with CDI](https://github.com/javaee/websocket-spec/issues/196),
-so for the time being long polling with `@Push(transport = Transport.LONG_POLLING)`
-must be used.
+[is not compatible](https://github.com/vaadin/cdi/issues/88)
+[with CDI](https://github.com/javaee/websocket-spec/issues/196), so for the time
+being a mixed communication mode with WebSocket for server to client and
+XMLHttpRequest for client to server must be used with
+`@Push(transport = Transport.WEBSOCKET_XHR)`.
 
 Tested with WildFly 10.1, but should work equally well with other Java EE 7
 application servers.

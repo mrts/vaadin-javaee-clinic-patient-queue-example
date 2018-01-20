@@ -6,7 +6,7 @@ import com.vaadin.cdi.CDIUI;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.ui.Transport;
 
-@Push(transport = Transport.LONG_POLLING)
+@Push(transport = Transport.WEBSOCKET_XHR)
 @CDIUI("infoscreen")
 public class InfoscreenUI extends ClinicPatientQueueExampleUIBase {
 

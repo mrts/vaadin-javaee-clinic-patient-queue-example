@@ -7,7 +7,7 @@ import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.ui.Transport;
 
-@Push(transport = Transport.LONG_POLLING)
+@Push(transport = Transport.WEBSOCKET_XHR)
 @CDIUI("doctors-office")
 public class DoctorsOfficeUI extends ClinicPatientQueueExampleUIBase {
 
