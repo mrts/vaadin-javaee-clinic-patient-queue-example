@@ -1,11 +1,11 @@
 package com.clinicpatientqueueexample.doctorsoffice;
 
 import com.clinicpatientqueueexample.doctors.Doctor;
+import com.vaadin.cdi.VaadinSessionScoped;
 
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
-@SessionScoped
+@VaadinSessionScoped
 public class UserSessionContext implements Serializable {
 
     private Doctor doctor;
