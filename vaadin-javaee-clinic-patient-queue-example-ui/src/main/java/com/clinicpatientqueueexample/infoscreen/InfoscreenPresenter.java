@@ -6,7 +6,6 @@ import com.clinicpatientqueueexample.patients.RegistrationStatus;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import java.util.Collection;
 import java.util.List;
 
 @Dependent

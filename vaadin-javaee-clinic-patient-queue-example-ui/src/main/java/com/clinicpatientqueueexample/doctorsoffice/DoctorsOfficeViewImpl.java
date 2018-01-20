@@ -1,7 +1,6 @@
 package com.clinicpatientqueueexample.doctorsoffice;
 
 import com.clinicpatientqueueexample.common.Constants;
-import com.clinicpatientqueueexample.messaging.AbstractBroadcaster;
 import com.clinicpatientqueueexample.messaging.RegistrationBroadcaster;
 import com.clinicpatientqueueexample.patients.Registration;
 import com.vaadin.cdi.CDIView;

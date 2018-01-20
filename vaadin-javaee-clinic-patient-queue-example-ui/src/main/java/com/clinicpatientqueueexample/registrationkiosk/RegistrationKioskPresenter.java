@@ -7,8 +7,6 @@ import com.clinicpatientqueueexample.messaging.MessageSenderBean;
 import com.clinicpatientqueueexample.patients.Patient;
 import com.clinicpatientqueueexample.patients.PatientService;
 import com.clinicpatientqueueexample.patients.RegistrationService;
-import com.vaadin.external.org.slf4j.Logger;
-import com.vaadin.external.org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
