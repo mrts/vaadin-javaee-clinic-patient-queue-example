@@ -39,7 +39,6 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-cdi</artifactId>
-			<version>3.0.0</version>
 		</dependency>
 
 		<!-- Backend implementation -->
