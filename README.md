@@ -49,6 +49,9 @@ The project consists of three apps:
 - Doctor's office app for doctors to see when patients arrive and call them in
 - Infoscreen where patients are notified when doctor calls them in.
 
+If you have Google Chrome installed, you can launch all the apps in parallel
+with `launch-apps.sh`.
+
 The following screencast shows the whole workflow in action:
 
 ![screencast](doc/vaadin-javaee-clinic-patient-queue-screencast.gif)
