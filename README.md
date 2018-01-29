@@ -69,7 +69,9 @@ A Vaadin TestBench test is also included, if you have a TestBench licence and
 [Chrome WebDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 installed, you can run it with
 
-    mvn test
+    mvn -Dtest=ClinicPatientQueueAppIT -DfailIfNoTests=false test
+
+Prerequisite is that the application server is running the application in the background.
 
 ## Adding doctors
 
