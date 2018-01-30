@@ -22,8 +22,12 @@ public abstract class AbstractBroadcaster {
 
     public void unregister(String topic, Consumer<String> listener) {
         final ConcurrentLinkedQueue<Consumer<String>> topicListeners = listeners.get(topic);
-        if (topicListeners != null) {
-            topicListeners.remove(listener);
+        if (topicListeners == null) {
+            return;
+        }
+        topicListeners.remove(listener);
+        if (topicListeners.isEmpty()) {
+            listeners.remove(topic);
         }
     }
 
