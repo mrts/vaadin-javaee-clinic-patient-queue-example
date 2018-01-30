@@ -14,6 +14,8 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import java.util.List;
 
+import static com.clinicpatientqueueexample.infoscreen.InfoscreenPresenter.INFOSCREEN_ID;
+
 @Dependent
 public class DoctorsOfficePresenter {
 
@@ -38,6 +40,8 @@ public class DoctorsOfficePresenter {
     public void logout() {
         principalService.logout();
         navigator.navigateTo(LoginView.VIEW_NAME);
+        // TODO: invalidate VaadinSessionScoped data properly, a la VaadinSession.getCurrent().close()
+        sessionContext.setDoctor(null);
     }
 
     public List<Registration> getDoctorsRegistrations() {
@@ -47,7 +51,8 @@ public class DoctorsOfficePresenter {
     public void callInPatient(Registration registration) {
         registration.setStatus(RegistrationStatus.CALLED_IN);
         final Patient patient = registration.getPatient();
-        messageSenderBean.sendCallInMessage(getDoctorID() + ":Calling in patient #" + patient.getId());
+        // would filter messages by infoscreen/doctor association in a real system
+        messageSenderBean.sendCallInMessage(INFOSCREEN_ID + ": Doctor #" + getDoctorID() + " calling in patient #" + patient.getId());
         notification.showMessage("Calling in patient " + patient.getName());
     }
 
@@ -59,6 +64,8 @@ public class DoctorsOfficePresenter {
         return sessionContext.getDoctor().getOffice();
     }
 
-    public String getDoctorID() { return sessionContext.getDoctor().getId(); }
+    public String getDoctorID() {
+        return sessionContext.getDoctor().getId();
+    }
 
 }

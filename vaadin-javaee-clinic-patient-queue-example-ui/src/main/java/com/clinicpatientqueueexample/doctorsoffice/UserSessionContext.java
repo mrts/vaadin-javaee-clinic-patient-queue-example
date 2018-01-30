@@ -15,6 +15,9 @@ public class UserSessionContext implements Serializable {
     }
 
     public void setDoctor(Doctor doctor) {
+        if (this.doctor != null && doctor != null) {
+            throw new RuntimeException("Doctor can be set only if previously uninitialized during a session");
+        }
         this.doctor = doctor;
     }
 }

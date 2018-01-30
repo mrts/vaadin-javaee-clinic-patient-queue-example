@@ -11,6 +11,8 @@ import java.util.List;
 @Dependent
 public class InfoscreenPresenter {
 
+    public static final String INFOSCREEN_ID = "infoscreen-singleton";
+
     @Inject
     private RegistrationService registrationService;
 

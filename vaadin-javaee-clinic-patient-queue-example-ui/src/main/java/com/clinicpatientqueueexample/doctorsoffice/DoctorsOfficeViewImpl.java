@@ -14,11 +14,11 @@ import com.vaadin.navigator.ViewChangeListener;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import java.util.Optional;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 @CDIView(DoctorsOfficeViewImpl.VIEW_NAME)
 @RolesAllowed(Constants.USERS_ROLE)
-public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, BiConsumer<String, String> {
+public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, Consumer<String> {
 
     public static final String VIEW_NAME = "doctors-office";
 
@@ -59,22 +59,20 @@ public class DoctorsOfficeViewImpl extends DoctorsOfficeDesign implements View, 
 
         resetDataProvider();
 
-        broadcaster.register(this);
+        broadcaster.register(presenter.getDoctorID(), this);
     }
 
     @Override
     public void detach() {
-        broadcaster.unregister(this);
+        broadcaster.unregister(presenter.getDoctorID(), this);
         super.detach();
     }
 
     @Override
-    public void accept(String receiverID, String message) {
+    public void accept(String message) {
         getUI().access(() -> {
-            if (receiverID != null && receiverID.equals(presenter.getDoctorID())) {
-                logger.info("Accept message '" + message + "' for doctor #" + receiverID);
-                resetDataProvider();
-            }
+            logger.info("Accept message '" + message + "' for doctor #" + presenter.getDoctorID());
+            resetDataProvider();
         });
     }
 

@@ -11,11 +11,10 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 
 import javax.inject.Inject;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @CDIView(InfoscreenViewImpl.VIEW_NAME)
-public class InfoscreenViewImpl extends InfoscreenDesign implements View, BiConsumer<String, String> {
+public class InfoscreenViewImpl extends InfoscreenDesign implements View, Consumer<String> {
 
     public static final String VIEW_NAME = "infoscreen";
 
@@ -38,19 +37,19 @@ public class InfoscreenViewImpl extends InfoscreenDesign implements View, BiCons
 
         resetDataProvider();
 
-        broadcaster.register(this);
+        // would filter messages by infoscreen/doctor association in a real system
+        broadcaster.register(presenter.INFOSCREEN_ID, this);
     }
 
     @Override
     public void detach() {
-        broadcaster.unregister(this);
+        broadcaster.unregister(presenter.INFOSCREEN_ID, this);
         super.detach();
     }
 
     @Override
-    public void accept(String doctorID, String message) {
-        // would filter messages by infoscreen/doctor association in a real system
-        logger.info("Received message: '" + message + "' from doctor #" + doctorID);
+    public void accept(String message) {
+        logger.info("Received message: '" + message + "'");
         getUI().access(() -> resetDataProvider());
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 @CDIView(RegistrationKioskView.VIEW_NAME)
 public class RegistrationKioskViewImpl extends RegistrationKioskDesign
-        implements RegistrationKioskView, View {
+    implements RegistrationKioskView, View {
 
     private Binder<Patient> binder = new Binder<>();
     private Patient patient;
@@ -50,18 +50,18 @@ public class RegistrationKioskViewImpl extends RegistrationKioskDesign
 
     private void bindPatientNameField() {
         binder.forField(patientName).withValidator(new StringLengthValidator("Too short", 3, 200))
-                .bind(Patient::getName, (p, name) -> {
-                    p.setName(name);
-                    doctorComponents.stream().forEach(component -> component.registerButton.setEnabled(true));
-                });
+            .bind(Patient::getName, (p, name) -> {
+                p.setName(name);
+                doctorComponents.stream().forEach(component -> component.registerButton.setEnabled(true));
+            });
     }
 
     private void fillDoctorsGridLayout(List<Doctor> allDoctors) {
         allDoctors.stream().map(doctor -> new DoctorComponentImpl(doctor, this, presenter))
-                .forEach(doctorComponent -> {
-                    doctorComponents.add(doctorComponent);
-                    doctorGridLayout.addComponent(doctorComponent);
-                });
+            .forEach(doctorComponent -> {
+                doctorComponents.add(doctorComponent);
+                doctorGridLayout.addComponent(doctorComponent);
+            });
     }
 
 }

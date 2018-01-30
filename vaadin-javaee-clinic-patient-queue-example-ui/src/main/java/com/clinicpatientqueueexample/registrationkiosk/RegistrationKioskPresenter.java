@@ -46,7 +46,7 @@ public class RegistrationKioskPresenter {
         registrationService.registerPatientToDoctor(patient, doctor);
         messageSenderBean.sendRegistrationMessage(doctor.getId() + ":Patient " + patient.getName() + " registered");
         notification.showMessage(patient.getName() + ", you are successfully registered to "
-                + doctor.getName() + " appointment.\nYour call-in number is " + patient.getId());
+            + doctor.getName() + " appointment.\nYour call-in number is " + patient.getId());
         view.resetPatient();
     }
 
