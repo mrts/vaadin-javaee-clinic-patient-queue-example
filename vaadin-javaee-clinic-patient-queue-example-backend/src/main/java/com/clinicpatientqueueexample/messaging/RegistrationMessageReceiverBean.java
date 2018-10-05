@@ -10,7 +10,7 @@ import static com.clinicpatientqueueexample.messaging.MessageSenderBean.REGISTRA
 
 @MessageDriven(activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = REGISTRATION_JMS_DESTINATION),
-        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge") })
 public class RegistrationMessageReceiverBean extends AbstractMessageReceiverBean implements MessageListener {
 
