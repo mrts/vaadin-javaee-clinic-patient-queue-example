@@ -66,7 +66,7 @@ public class DoctorsOfficePresenterTest {
 
         // assert
         assertThat(registration.getStatus()).isEqualTo(RegistrationStatus.CALLED_IN);
-        verify(messageSenderBean).sendCallInMessage(DOCTOR.getId() + ":Calling in patient #123");
+        verify(messageSenderBean).sendCallInMessage("infoscreen-singleton: Doctor #" + DOCTOR.getId() + " calling in patient #123");
         verify(notification).showMessage("Calling in patient Ms. Piret Patient");
     }
 
