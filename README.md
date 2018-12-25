@@ -15,7 +15,7 @@ login form and view navigator.
 
 Vaadin's server push uses a WebSocket connection by default which unfortunately
 [is not compatible](https://github.com/vaadin/cdi/issues/88)
-[with CDI](https://github.com/eclipse-ee4j/websocket-spec/issues/196), so for the time
+[with CDI](https://github.com/eclipse-ee4j/websocket-api/issues/196), so for the time
 being a mixed communication mode with WebSocket for server to client and
 XMLHttpRequest for client to server must be used with
 `@Push(transport = Transport.WEBSOCKET_XHR)`.
