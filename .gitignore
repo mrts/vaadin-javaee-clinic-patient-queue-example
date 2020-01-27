@@ -4,4 +4,5 @@ target/
 error-screenshots/
 *.swp
 *.iml
+*.versionsBackup
 styles.css

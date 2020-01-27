@@ -5,7 +5,7 @@
 	<groupId>com.clinicpatientqueueexample</groupId>
 	<artifactId>vaadin-javaee-clinic-patient-queue-example</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<name>vaadin-javaee-clinic-patient-queue-example-parent</name>
 
 	<prerequisites>
