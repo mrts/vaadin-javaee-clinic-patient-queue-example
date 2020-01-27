@@ -34,7 +34,7 @@ The project consists of the following modules:
 You need Maven and Java 8 JDK to build and run the application.
 
 Build the application WAR with `mvn package`, deploy it from
-`vaadin-javaee-clinic-patient-queue-example-ui/target/vaadin-javaee-clinic-patient-queue-example-1.0-SNAPSHOT.war`
+`vaadin-javaee-clinic-patient-queue-example-ui/target/vaadin-javaee-clinic-patient-queue-example-1.0.1.war`
 to the application server.
 
 **Note that you need to run WildFly with full profile to enable JMS:**
@@ -58,12 +58,12 @@ The following screencast shows the whole workflow in action:
 
 ## Testing
 
-1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0-SNAPSHOT/doctors-office) in first browser window
+1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0.1/doctors-office) in first browser window
 2. Login as *user* with password *user* (see *Adding doctors* below), dr. Anu Võsu's office view opens
-3. Open [registration kiosk](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0-SNAPSHOT/registration-kiosk) in second browser window
+3. Open [registration kiosk](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0.1/registration-kiosk) in second browser window
 4. Enter your name and press *Register* under dr. Anu Võsu's name to register to her appointment
 5. The kiosk will output your call-in number
-6. Open [infoscreen](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0-SNAPSHOT/infoscreen) in third browser window
+6. Open [infoscreen](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0.1/infoscreen) in third browser window
 7. Switch to doctor's office app and observe that your registration is visible on the page
 8. Select your registration and press *Call in*
 9. Switch to infoscreen and observe that your call in number is visible in the list
