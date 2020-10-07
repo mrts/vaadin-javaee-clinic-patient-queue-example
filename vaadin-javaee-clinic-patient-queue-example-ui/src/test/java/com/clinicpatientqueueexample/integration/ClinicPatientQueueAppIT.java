@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunLocally(Browser.CHROME)
 public class ClinicPatientQueueAppIT extends ParallelTest {
 
-    private static String BASE_URL = "http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0-SNAPSHOT/";
+    private static String BASE_URL = "http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0.1/";
     private static final String REGISTRATION_KIOSK_URL = BASE_URL + RegistrationKioskView.VIEW_NAME;
     private static final String DOCTORS_OFFICE_URL = BASE_URL + DoctorsOfficeViewImpl.VIEW_NAME;
     private static final String INFOSCREEN_URL = BASE_URL + InfoscreenViewImpl.VIEW_NAME;
