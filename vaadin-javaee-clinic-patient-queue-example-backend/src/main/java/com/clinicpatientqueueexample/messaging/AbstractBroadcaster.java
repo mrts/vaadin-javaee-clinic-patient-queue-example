@@ -1,16 +1,20 @@
 package com.clinicpatientqueueexample.messaging;
 
+import javax.annotation.Resource;
+import javax.enterprise.concurrent.ManagedExecutorService;
+import javax.enterprise.context.ApplicationScoped;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
-public abstract class AbstractBroadcaster {
+// This is an abstract base class, but as managed beans cannot be abstract, there is no abstract qualifier.
+@ApplicationScoped
+public class AbstractBroadcaster {
 
     private final ConcurrentMap<String, ConcurrentLinkedQueue<Consumer<String>>> listeners = new ConcurrentHashMap<>();
-    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    @Resource
+    private ManagedExecutorService executorService;
 
     public void register(String topic, Consumer<String> listener) {
         ConcurrentLinkedQueue<Consumer<String>> topicListeners = listeners.putIfAbsent(topic, new ConcurrentLinkedQueue<>());
