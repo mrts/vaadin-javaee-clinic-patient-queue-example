@@ -2,9 +2,9 @@ package com.clinicpatientqueueexample.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Simple example CrudService for storing beans.
@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class CrudService<T extends Entity> implements Serializable {
 
-    private Map<String, T> storage = new HashMap<>();
+    private Map<String, T> storage = new ConcurrentHashMap<>();
 
     public void save(T entity) {
         storage.put(entity.getId(), entity);
