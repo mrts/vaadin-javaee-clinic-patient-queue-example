@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>vaadin-javaee-clinic-patient-queue-example</artifactId>
 		<groupId>com.clinicpatientqueueexample</groupId>
-		<version>1.0.1</version>
+		<version>1.0.2</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
@@ -52,25 +52,25 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>2.7.19</version>
+			<version>4.11.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>3.6.2</version>
+			<version>3.24.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-testbench</artifactId>
-			<version>5.0.0</version>
+			<version>5.2.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -83,19 +83,9 @@
 				<version>3.0.0</version>
 				<configuration>
 					<failOnMissingWebXml>true</failOnMissingWebXml>
+					<warName>vaadin-javaee-clinic-patient-queue-example</warName>
 				</configuration>
 			</plugin>
-			<!-- The Jetty plugin allows us to easily test the development build by
-			     running jetty:run on the command line. <- Does not work with javaee-api.
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.plugin.version}</version>
-				<configuration>
-					<scanIntervalSeconds>2</scanIntervalSeconds>
-				</configuration>
-			</plugin>
-			-->
 			<plugin>
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-maven-plugin</artifactId>

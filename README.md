@@ -1,6 +1,6 @@
 # vaadin-javaee-clinic-patient-queue-example
 
-An example clinic patient queue application using Vaadin 8, Java EE 7 and
+An example clinic patient queue application using Vaadin 8, Java EE 8 and
 Vaadin CDI add-on.
 
 Demonstrates how to use Vaadin's server push and Java EE messaging APIs to send
@@ -20,7 +20,7 @@ being a mixed communication mode with WebSocket for server to client and
 XMLHttpRequest for client to server must be used with
 `@Push(transport = Transport.WEBSOCKET_XHR)`.
 
-Tested with WildFly 10.1, but should work equally well with other Java EE 7
+Tested with WildFly 18.0.1, but should work equally well with other Java EE 8
 application servers.
 
 The project consists of the following modules:
@@ -34,7 +34,7 @@ The project consists of the following modules:
 You need Maven and Java 8 JDK to build and run the application.
 
 Build the application WAR with `mvn package`, deploy it from
-`vaadin-javaee-clinic-patient-queue-example-ui/target/vaadin-javaee-clinic-patient-queue-example-1.0.1.war`
+`vaadin-javaee-clinic-patient-queue-example-ui/target/vaadin-javaee-clinic-patient-queue-example.war`
 to the application server.
 
 **Note that you need to run WildFly with full profile to enable JMS:**
@@ -58,12 +58,12 @@ The following screencast shows the whole workflow in action:
 
 ## Testing
 
-1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0.1/doctors-office) in first browser window
+1. Open [doctor's office app](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example/doctors-office) in first browser window
 2. Login as *user* with password *user* (see *Adding doctors* below), dr. Anu Võsu's office view opens
-3. Open [registration kiosk](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0.1/registration-kiosk) in second browser window
+3. Open [registration kiosk](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example/registration-kiosk) in second browser window
 4. Enter your name and press *Register* under dr. Anu Võsu's name to register to her appointment
 5. The kiosk will output your call-in number
-6. Open [infoscreen](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example-ui-1.0.1/infoscreen) in third browser window
+6. Open [infoscreen](http://localhost:8080/vaadin-javaee-clinic-patient-queue-example/infoscreen) in third browser window
 7. Switch to doctor's office app and observe that your registration is visible on the page
 8. Select your registration and press *Call in*
 9. Switch to infoscreen and observe that your call in number is visible in the list
