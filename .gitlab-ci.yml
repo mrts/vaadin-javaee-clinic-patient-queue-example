@@ -1,0 +1,16 @@
+stages:
+  - build-test-and-package
+
+variables:
+  MAVEN_CLI_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository --batch-mode"
+  JAVA_HOME: "/usr/lib/jvm/java-11-openjdk-amd64"
+
+cache:
+  paths:
+    - .m2/repository/
+
+build-test-and-package:
+  stage: build-test-and-package
+  script:
+    - mvn $MAVEN_CLI_OPTS clean package
+
