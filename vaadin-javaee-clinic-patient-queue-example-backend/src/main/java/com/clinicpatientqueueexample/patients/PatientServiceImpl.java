@@ -4,16 +4,18 @@ import com.clinicpatientqueueexample.data.CrudService;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @ApplicationScoped
 public class PatientServiceImpl implements PatientService {
 
-    private static int patientNumberGenerator = 1;
+    private static final AtomicInteger patientNumberGenerator = new AtomicInteger(1);
 
-    private CrudService<Patient> service = new CrudService<>();
+    private final CrudService<Patient> service = new CrudService<>();
 
     @Override
     public Patient save(Patient patient) {
-        patient.setId(String.valueOf(patientNumberGenerator++));
+        patient.setId(String.valueOf(patientNumberGenerator.getAndIncrement()));
         service.save(patient);
         return patient;
     }
